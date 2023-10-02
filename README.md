@@ -458,7 +458,7 @@ hacksburg.local
 - ADMINS:
   - tim.sands = petyer.baelish
   - david.raymond = lord.varys
-  - rnady.marchany = maester.pycelle
+  - randy.marchany = maester.pycelle
 - DRAGONSTONE :        ACL Write Owner on KINGSGUARD
 **DRAGONSTONE Replacement** (Not implemented yet):
 - EVERYONE = DRAGONSTONE
