@@ -41,9 +41,9 @@
     action: add
 
 # - name: Setup service account
-# Set-ADUser -Identity "{{SQLSVCACCOUNT}}" -ServicePrincipalNames @{Add='MSSQLSvc/castelblack.north.sevenkingdoms.local'}
+# Set-ADUser -Identity "{{SQLSVCACCOUNT}}" -ServicePrincipalNames @{Add='MSSQLSvc/centros.lane.hacksburg.local'}
 # Get-ADUser -Identity "{{SQLSVCACCOUNT}}" | Set-ADAccountControl -TrustedToAuthForDelegation $true
-# Set-ADUser -Identity "{{SQLSVCACCOUNT}}" -Add @{'msDS-AllowedToDelegateTo'=@('CIFS/winterfell.north.sevenkingdoms.local','CIFS/winterfell')}
+# Set-ADUser -Identity "{{SQLSVCACCOUNT}}" -Add @{'msDS-AllowedToDelegateTo'=@('CIFS/sharkys.lane.hacksburg.local','CIFS/sharkys')}
 
 - name: check install already done
   win_stat:

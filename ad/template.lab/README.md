@@ -190,8 +190,8 @@ srv02
             },
             "executeasuser" : {},
             "linked_servers": {
-                "CASTELBLACK" : {
-                    "data_src": "castelblack.north.sevenkingdoms.local",
+                "centros" : {
+                    "data_src": "centros.lane.hacksburg.local",
                     "users_mapping": [
                         {"local_login": "ESSOS\\khal.drogo","remote_login": "sa", "remote_password": "Sup1_sa_P@ssw0rd!"}
                     ]
@@ -256,43 +256,43 @@ srv02
 #### organisation_units (optional)
 - To add custom organisation units (OU)
 
-- Example on sevenkingdoms.local :
+- Example on hacksburg.local :
 ```
 "domains" : {
-    "sevenkingdoms.local" : {
+    "hacksburg.local" : {
             ...
             "organisation_units" : {
-                "Vale"        : { "path" : "DC=sevenkingdoms,DC=local"},
-                "IronIslands" : { "path" : "DC=sevenkingdoms,DC=local"},
-                "Riverlands"  : { "path" : "DC=sevenkingdoms,DC=local"},
-                "Crownlands"  : { "path" : "DC=sevenkingdoms,DC=local"},
-                "Stormlands"  : { "path" : "DC=sevenkingdoms,DC=local"},
-                "Westerlands" : { "path" : "DC=sevenkingdoms,DC=local"},
-                "Reach"       : { "path" : "DC=sevenkingdoms,DC=local"},
-                "Dorne"       : { "path" : "DC=sevenkingdoms,DC=local"}
+                "Vale"        : { "path" : "DC=hacksburg,DC=local"},
+                "IronIslands" : { "path" : "DC=hacksburg,DC=local"},
+                "Riverlands"  : { "path" : "DC=hacksburg,DC=local"},
+                "Crownlands"  : { "path" : "DC=hacksburg,DC=local"},
+                "Stormlands"  : { "path" : "DC=hacksburg,DC=local"},
+                "Westerlands" : { "path" : "DC=hacksburg,DC=local"},
+                "Reach"       : { "path" : "DC=hacksburg,DC=local"},
+                "Dorne"       : { "path" : "DC=hacksburg,DC=local"}
             },
 ```
 
 #### multi_domain_groups_member (optional)
 - Add a user from another domain into a group (must be a domainlocal group)
 
-- Example on sevenkingdoms.local :
+- Example on hacksburg.local :
 
 ```
 "domains" : {
-    "sevenkingdoms.local" : {
+    "hacksburg.local" : {
             ...
             "groups" : {
                 ...
                 "domainlocal" : {
-                    "AcrossTheSea" : {
-                        "path" : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "Roanoke" : {
+                        "path" : "CN=Users,DC=lane,DC=hacksburg,DC=local"
                     }
                 }
             },
             "multi_domain_groups_member" : {
-                "AcrossTheSea" : [
-                    "essos.local\\daenerys.targaryen"
+                "Roanoke" : [
+                    "roanoke.local\\daenerys.targaryen"
                 ]
             },
 ```
@@ -300,17 +300,17 @@ srv02
 #### acls (optional)
 - To create ace relations in your active directory
 
-- Example on sevenkingdoms.local
+- Example on hacksburg.local
 ```
 "domains" : {
-    "sevenkingdoms.local" : {
+    "hacksburg.local" : {
         ...
         "acls" : {
             "GenericAll_khal_viserys" : {"for": "khal.drogo", "to": "viserys.targaryen", "right": "GenericAll", "inheritance": "None"},
             "GenericAll_spy_jorah" : {"for": "Spys", "to": "jorah.mormont", "right": "GenericAll", "inheritance": "None"},
             "GenericAll_khal_esc4" : {"for": "khal.drogo", "to": "CN=ESC4,CN=Certificate Templates,CN=Public Key Services,CN=Services,CN=Configuration,DC=essos,DC=local", "right": "GenericAll", "inheritance": "None"},
             "WriteProperty_petyer_domadmin" : {"for": "viserys.targaryen", "to": "jorah.mormont", "right": "WriteProperty", "inheritance": "All"},
-            "GenericWrite_DragonsFriends_braavos" : {"for": "DragonsFriends", "to": "braavoos$", "right": "GenericWrite", "inheritance": "None"}
+            "GenericWrite_DragonsFriends_duckpond" : {"for": "DragonsFriends", "to": "braavoos$", "right": "GenericWrite", "inheritance": "None"}
         },
 ```
 
@@ -348,8 +348,8 @@ srv02
 
 ```
 "acls" : {
-    "anonymous_rpc" : {"for": "NT AUTHORITY\\ANONYMOUS LOGON", "to": "DC=North,DC=sevenkingdoms,DC=local", "right": "ReadProperty", "inheritance": "All"},
-    "anonymous_rpc2" : {"for": "NT AUTHORITY\\ANONYMOUS LOGON", "to": "DC=North,DC=sevenkingdoms,DC=local", "right": "GenericExecute", "inheritance": "All"}
+    "anonymous_rpc" : {"for": "NT AUTHORITY\\ANONYMOUS LOGON", "to": "DC=lane,DC=hacksburg,DC=local", "right": "ReadProperty", "inheritance": "All"},
+    "anonymous_rpc2" : {"for": "NT AUTHORITY\\ANONYMOUS LOGON", "to": "DC=lane,DC=hacksburg,DC=local", "right": "GenericExecute", "inheritance": "All"}
 },
 ```
 
@@ -361,9 +361,9 @@ srv02
 
 ```
 "domains" : {
-    "north.sevenkingdoms.local" : {
+    "lane.hacksburg.local" : {
         ...
-        "laps_path": "OU=Laps,DC=north,DC=sevenkingdoms,DC=local",
+        "laps_path": "OU=Laps,DC=lane,DC=hacksburg,DC=local",
         ...
         "laps_readers": [
                 "jorah.mormont",
@@ -379,14 +379,14 @@ srv02
 - In case of external trust trust key must be setup in each domains
 ```
     "domains" : {
-        "sevenkingdoms.local" : {
+        "hacksburg.local" : {
             ...
-            "trust" : "essos.local",
+            "trust" : "roanoke.local",
             ...
         },
-        "essos.local" : {
+        "roanoke.local" : {
             ...
-            "trust" : "sevenkingdoms.local",
+            "trust" : "hacksburg.local",
 ```
 
 #### ca_server (for adcs_customtemplates role)
@@ -394,7 +394,7 @@ srv02
 
 ```
    "domains" : {
-        "essos.local" : {
+        "roanoke.local" : {
             ...
-            "ca_server": "Braavos",
+            "ca_server": "duckpond",
 ```

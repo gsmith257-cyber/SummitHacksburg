@@ -21,14 +21,14 @@ boxes = [
   { :name => "SRV02", :ip => "192.168.56.22", :box => "StefanScherer/windows_2019", :box_version => "2020.07.17", :os => "windows"},
 # https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
   # windows server 2016
-  { :name => "SRV03", :ip => "192.168.56.23", :box => "StefanScherer/windows_2016", :box_version => "2019.02.14", :os => "windows"}
+  { :name => "SRV03", :ip => "192.168.56.23", :box => "StefanScherer/windows_2016", :box_version => "2019.02.14", :os => "windows"},
 # https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO
   # ELK
-# { :name => "elk", :ip => "192.168.56.50", :box => "bento/ubuntu-18.04", :os => "linux",
-#   :forwarded_port => [
-#     {:guest => 22, :host => 2210, :id => "ssh"}
-#   ]
-# }
+ { :name => "elk", :ip => "192.168.56.50", :box => "bento/ubuntu-18.04", :os => "linux",
+   :forwarded_port => [
+     {:guest => 22, :host => 2210, :id => "ssh"}
+   ]
+ }
 ]
 
 # BUILD with a full up to date vm if you don't want version with old vulns 

@@ -29,7 +29,7 @@ This lab use free windows VM only (180 days). After that delay enter a license o
 vagrant up
 # provisioning (setup the goad config and install inside the vms)
 sudo docker build -t goadansible .
-sudo docker run -ti --rm --network host -h goadansible -v $(pwd):/goad -w /goad/ansible goadansible ansible-playbook -i ../ad/sevenkingdoms.local/inventory main.yml
+sudo docker run -ti --rm --network host -h goadansible -v $(pwd):/goad -w /goad/ansible goadansible ansible-playbook -i ../ad/hacksburg.local/inventory main.yml
 ```
 
 - Now you can grab a coffee it will take time :)
@@ -95,7 +95,7 @@ ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
 ENV['VAGRANT_DEFAULT_PROVIDER'] = 'vmware_desktop'
 ```
 
-- `ad/sevenkingdoms.local/inventory`:
+- `ad/hacksburg.local/inventory`:
   - Change the following lines from this :
 ```
 ; adapter created by vagrant and virtualbox
@@ -176,7 +176,7 @@ sudo docker build -t goadansible .
 - And launch the provisioning with :
 
 ```bash
-sudo docker run -ti --rm --network host -h goadansible -v $(pwd):/goad -w /goad/ansible goadansible ansible-playbook -i ../ad/sevenkingdoms.local/inventory main.yml
+sudo docker run -ti --rm --network host -h goadansible -v $(pwd):/goad -w /goad/ansible goadansible ansible-playbook -i ../ad/hacksburg.local/inventory main.yml
 ```
 
 - This will launch ansible on the docker container.
@@ -225,7 +225,7 @@ ansible-galaxy install -r requirements.yml
 - And than you can launch the ansible provisioning with (note that the vms must be in a running state, so vagrant up must have been done before that)
 
 ```bash
-ansible-playbook -i ../ad/sevenkingdoms.local/inventory main.yml # this will configure the vms in order to play ansible when the vms are ready
+ansible-playbook -i ../ad/hacksburg.local/inventory main.yml # this will configure the vms in order to play ansible when the vms are ready
 ```
 
 ### V2 breaking changes
@@ -233,14 +233,14 @@ ansible-playbook -i ../ad/sevenkingdoms.local/inventory main.yml # this will con
 - Chocolatey is no more used and basic tools like git or notepad++ are no more installed by default (as chocolatey regularly crash the install due to hitting rate on multiples builds)
 - ELK is no more installed by default to save resources but you still can install it separately (see the blueteam/elk part)
 - Dragonstone vm as disappear and there is no more DC replication in the lab to save resources
-- Wintefell is now a domain controller for the subdomain north of the sevenkingdoms.local domain
+- Wintefell is now a domain controller for the subdomain north of the hacksburg.local domain
 
 ### Space use
 - the lab takes about 77GB (but you have to get the space for the vms vagrant images windows server 2016 (22GB) / windows server 2019 (14GB) / ubuntu 18.04 (502M))
 - the total space needed for the lab is ~115 GB (and more if you take snapshots)
 
 ### Start / Setup / Run
-The default domain will be **sevenkingdoms.local**, on the subnet 192.168.56.1/24 and each machine has been allocated with 2CPU and 4GB of memory. If you want to change some of these performance settings you can modify the Vagrantfile (please note that with less RAM the install process sometimes crash, if it append just relaunch the ansible playbook).
+The default domain will be **hacksburg.local**, on the subnet 192.168.56.1/24 and each machine has been allocated with 2CPU and 4GB of memory. If you want to change some of these performance settings you can modify the Vagrantfile (please note that with less RAM the install process sometimes crash, if it append just relaunch the ansible playbook).
 
 To have the lab up and running this is the commands you should do:
 
@@ -256,7 +256,7 @@ vagrant up # this will create the vms (this command must be run in the folder wh
   - in one command just play :
 
 ```bash
-ansible-playbook -i ../ad/sevenkingdoms.local/inventory main.yml # this will configure the vms in order to play ansible when the vms are ready
+ansible-playbook -i ../ad/hacksburg.local/inventory main.yml # this will configure the vms in order to play ansible when the vms are ready
 ```
 
 - To run the provisioning from the docker container run (you should be in the same folder as the Dockerfile):
@@ -295,36 +295,38 @@ vagrant up   # will start the lab
 
 - If you got some errors see the troubleshooting section at the end of the document, but in most case if you get errors during install, don't think and just replay the main playbook (most of the errors which could came up are due to windows latency during installation, wait few minutes and replay the main.yml playbook)
 ```
-ansible-playbook -i ../ad/sevenkingdoms.local/inventory main.yml
+ansible-playbook -i ../ad/hacksburg.local/inventory main.yml
 ```
 
 ## If you want to discuss about Active Directory and the GOAD project
 
 - Join us on Discord : https://discord.gg/NYy7rsMf3u
 
-## LAB Content - sevenkingdoms.local / north.sevenkingdoms.local / essos.local
+## LAB Content - hacksburg.local / lane.hacksburg.local / roanoke.local
 
 ![v2_overview.png](./docs/img/v2_overview.png)
 
 ### Servers
 This lab is actually composed of five virtual machines:
-- **kingslanding** : DC01  running on Windows Server 2019 (with windefender enabled by default)
-- **winterfell**   : DC02  running on Windows Server 2019 (with windefender enabled by default)
-- **castelblack**  : SRV02 running on Windows Server 2019 (with windefender **disabled** by default)
-- **meereen**      : DC03  running on Windows Server 2016 (with windefender enabled by default)
-- **braavos**      : SRV03 running on Windows Server 2016 (with windefender enabled by default)
+- **TOTS** : DC01  running on Windows Server 2019 (with windefender enabled by default)
+- **sharkys**   : DC02  running on Windows Server 2019 (with windefender enabled by default)
+- **centros**  : SRV02 running on Windows Server 2019 (with windefender **disabled** by default)
+- **drillfield**      : DC03  running on Windows Server 2016 (with windefender enabled by default)
+- **duckpond**      : SRV03 running on Windows Server 2016 (with windefender enabled by default)
+- **mcbryde**     : DC04  running on Windows Server 2016 (with windefender enabled by default) **Need to add**
+- **burrus**      : SRV01 running on Windows Server 2016 (with windefender enabled by default)
 
-#### domain : north.sevenkingdoms.local
-- **winterfell**     : DC01
-- **castelblack**    : SRV02 : MSSQL / IIS
+#### domain : lane.hacksburg.local
+- **sharkys**     : DC01
+- **centros**    : SRV02 : MSSQL / IIS
 
-#### domain : sevenkingdoms.local
-- **kingslanding**   : DC02
-- **castelrock**     : SRV01 (disabled due to resources reasons)
+#### domain : hacksburg.local
+- **TOTS**   : DC01
+- **burrus**     : SRV01 (disabled due to resources reasons)
 
-#### domain : essos.local
-- **braavos**        : DC03
-- **meeren**         : SRV03 : MSSQL / ADCS
+#### domain : roanoke.local
+- **mcbryde**        : DC03
+- **duckpond**         : SRV03 : MSSQL / ADCS
 
 
 The lab setup is automated using vagrant and ansible automation tools.
@@ -345,7 +347,7 @@ You can change the vm version in the Vagrantfile according to Stefan Scherer vag
 # }
 ```
 
-  2. uncomment the elk part in the inventory (ad/sevenkingdoms.local/inventory) file
+  2. uncomment the elk part in the inventory (ad/hacksburg.local/inventory) file
 ```
 [elk:vars]
 ansible_connection=ssh
@@ -360,7 +362,7 @@ host_key_checking = false
 
   3. install with docker
 ```bash
-sudo docker run -ti --rm --network host -e ANSIBLE_CONFIG=/goad/ansible -h goadansible -v $(pwd):/goad -w /goad/ansible goadansible ansible-playbook -i ../ad/sevenkingdoms.local/inventory elk.yml
+sudo docker run -ti --rm --network host -e ANSIBLE_CONFIG=/goad/ansible -h goadansible -v $(pwd):/goad -w /goad/ansible goadansible ansible-playbook -i ../ad/hacksburg.local/inventory elk.yml
 ```
 
   3. or install on hand : 
@@ -382,8 +384,8 @@ ansible-playbook elk.yml
 
 - You can find a lot of the available scenarios on [https://mayfly277.github.io/categories/ad/](https://mayfly277.github.io/categories/ad/)
 
-NORTH.SEVENKINGDOMS.LOCAL
-- STARKS:              RDP on WINTERFELL AND CASTELBLACK
+lane.hacksburg.local
+- STARKS:              RDP on sharkys AND centros
   - arya.stark:        Execute as user on mssql
   - eddard.stark:      DOMAIN ADMIN NORTH/ (bot 5min) LLMRN request to do NTLM relay with responder
   - catelyn.stark:     
@@ -394,57 +396,110 @@ NORTH.SEVENKINGDOMS.LOCAL
   - theon.greyjoy:
   - jon.snow:          mssql admin / KERBEROASTING / group cross domain / mssql trusted link
   - hodor:             PASSWORD SPRAY (user=password)
-- NIGHT WATCH:         RDP on CASTELBLACK
+- **STARKS Replacements** (Not implemented yet):
+- CyberVT:
+  - miles.zoel = arya.stark 
+  - grant.smith = eddard.stark
+  - chris.ryan = catelyn.stark
+  - erin.freck = robb.stark
+  - lake = sansa.stark
+  - chris.cerne = brandon.stark
+  - nick.cerne = rickon.stark
+  - mark = theon.greyjoy
+  - thomas.rydzewski = jon.snow
+  - riley = hodor
+
+
+- NIGHT WATCH:         RDP on centros
   - samwell.tarly:     Password in ldap description / mssql execute as login
                        GPO abuse (Edit Settings on "STARKWALLPAPER" GPO)
   - jon.snow:          (see starks)
   - jeor.mormont:      (see mormont)
-- MORMONT:             RDP on CASTELBLACK
+**NIGHT WATCH Replacement** (Not implemented yet):
+- CorpsOfCadets
+  - carly.wolfe = samwell.tarly
+- MORMONT:             RDP on centros
   - jeor.mormont:      ACL writedacl-writeowner on group Night Watch
+**MORMONT Replacement** (Not implemented yet):
+- 1stSGT
+  - wesley.flynn = jeor.mormont
 - AcrossTheSea :       cross forest group
+**AcrossTheSea Replacement** (Not implemented yet):
+- Roanoke
 
-SEVENKINGDOMS.LOCAL
+hacksburg.local
 - LANISTERS
   - tywin.lannister:   ACL forcechangepassword on jaime.lanister
   - jaime.lannister:   ACL genericwrite-on-user joffrey.baratheon
-  - tyron.lannister:   ACL self-self-membership-on-group Small Council
+  - tyron.lannister:   ACL self-self-membership-on-group CyberVT
   - cersei.lannister:  DOMAIN ADMIN SEVENKINGDOMS
-- BARATHEON:           RDP on KINGSLANDING
+**LANISTER Replacement** (Not implemented yet):
+- Hokies
+  - hokie.bird = tywin.lannister
+  - frank.beamer = jaime.lannister
+  - justin.fuente = tyron.lannister
+  - bud.foster = cersei.lannister
+- BARATHEON:           RDP on TOTS
   - robert.baratheon:  DOMAIN ADMIN SEVENKINGDOMS
   - joffrey.baratheon: ACL Write DACL on tyron.lannister
   - renly.baratheon:
-  - stannis.baratheon: ACL genericall-on-computer kingslanding / ACL writeproperty-self-membership Domain Admins
-- SMALL COUNCIL :      ACL add Member to group dragon stone / RDP on KINGSLANDING
+  - stannis.baratheon: ACL genericall-on-computer TOTS / ACL writeproperty-self-membership Domain Admins
+**BARATHEON Replacement** (Not implemented yet):
+- UNIX:
+  - richard.stallman = robert.baratheon
+  - linus.torvalds = joffrey.baratheon
+  - brian.kernighan = renly.baratheon
+  - ken.thompson = stannis.baratheon
+- SMALL COUNCIL :      ACL add Member to group dragon stone / RDP on TOTS
   - petyer.baelish:    ACL writeproperty-on-group Domain Admins
   - lord.varys:        ACL genericall-on-group Domain Admins / Acrossthenarrossea
   - maester.pycelle:   ACL write owner on group Domain Admins
+**SMALL COUNCIL Replacement** (Not implemented yet):
+- ADMINS:
+  - tim.sands = petyer.baelish
+  - david.raymond = lord.varys
+  - rnady.marchany = maester.pycelle
 - DRAGONSTONE :        ACL Write Owner on KINGSGUARD
+**DRAGONSTONE Replacement** (Not implemented yet):
+- EVERYONE = DRAGONSTONE
 - KINGSGUARD :         ACL generic all on user stannis.baratheon
-- AccorsTheNarrowSea:       cross forest group
+**KINGSGUARD Replacement** (Not implemented yet):
+- TUX = KINGSGUARD
+- AccrossTheNarrowSea:       cross forest group
+**AccrossTheNarrowSea Replacement** (Not implemented yet):
+- Roanoke
 
-ESSOS.LOCAL
+roanoke.local
 - TARGERYEN
   - daenerys.targaryen: DOMAIN ADMIN ESSOS
   - viserys.targaryen:  
   - jorah.mormont:      mssql execute as login / mssql trusted link / Read LAPS Password
+**TARGERYEN Replacement** (Not implemented yet):
+- LOCALS
+  - season.ticket.holder = daenerys.targaryen
+  - university.club.member = viserys.targaryen
+  - student = jorah.mormont
 - DOTHRAKI
   - khal.drogo:         mssql admin / GenericAll on viserys (shadow credentials) / GenericAll on ECS4
-- DragonsFriends:       cross forest group
+**DOTHRAKI Replacement** (Not implemented yet):
+- Hikers
+  - venture.out = khal.drogo
+- ForestFriends:       cross forest group
 - Spys:                 cross forest group / Read LAPS password  / ACL generic all jorah.mormont
 
 ### Computers Users and group permissions
 
-- SEVENKINGDOMS
-  - DC01 : kingslanding.sevenkingdoms.local (Windows Server 2019) (SEVENKINGDOMS DC)
+- HACKSBURG
+  - DC01 : TOTS.hacksburg.local (Windows Server 2019) (HACKSBURG DC)
     - Admins : robert.baratheon (U), cersei.lannister (U)
-    - RDP: Small Council (G)
+    - RDP: SMALL COUNCIL (G)
 
 - NORTH
-  - DC02 : winterfell.north.sevenkingdoms.local (Windows Server 2019) (NORTH DC)
+  - DC02 : sharkys.lane.hacksburg.local (Windows Server 2019) (Lane DC)
     - Admins : eddard.stark (U), catelyn.stark (U), robb.stark (U)
     - RDP: Stark(G)
 
-  - SRV02 : castelblack.essos.local (Windows Server 2019) (IIS, MSSQL, SMB share)
+  - SRV02 : centros.roanoke.local (Windows Server 2019) (IIS, MSSQL, SMB share)
     - Admins: jeor.mormont (U)
     - RDP: Night Watch (G), Mormont (G), Stark (G)
     - IIS : allow asp upload, run as NT Authority/network
@@ -452,16 +507,16 @@ ESSOS.LOCAL
       - admin : jon.snow
       - impersonate : 
         - execute as login : samwel.tarlly -> sa
-        - execute as user : arya.stark -> dbo
+        - execute as user : miles.zoel -> dbo
       - link :
-        - to braavos : jon.snow -> sa
+        - to duckpond : jon.snow -> sa
 
 - ESSOS
-  - DC03  : meereen.essos.local (Windows Server 2016) (ESSOS DC)
+  - DC03  : drillfield.roanoke.local (Windows Server 2016) (ESSOS DC)
     - Admins: daenerys.targaryen (U)
     - RDP: Targaryen (G)
 
-  - SRV03 : braavos.essos.local (Windows Server 2016) (MSSQL, SMB share)
+  - SRV03 : duckpond.roanoke.local (Windows Server 2016) (MSSQL, SMB share)
     - Admins: khal.drogo (U)
     - RDP: Dothraki (G)
     - MSSQL :
@@ -469,7 +524,7 @@ ESSOS.LOCAL
       - impersonate :
         - execute as login : jorah.mormont -> sa
       - link:
-        - to castelblack: jorah.mormont -> sa
+        - to centros: jorah.mormont -> sa
 
 
 ## ROAD MAP
@@ -538,7 +593,7 @@ ad/
 
 - On dragonstone play as domain admin user :
 ```
-repadmin /replicate kingslanding.sevenkingdoms.local dragonstone.sevenkingdoms.local dc=sevenkingdoms,dc=local /full
+repadmin /replicate TOTS.hacksburg.local dragonstone.hacksburg.local DC=hacksburg,DC=local /full
 ```
 
 ### vagrant usefull commands (vm management)
@@ -605,7 +660,7 @@ ansible-playbook main.yml
 
 ```bash
 An exception occurred during task execution. To see the full traceback, use -vvv. The error was:    at Microsoft.ActiveDirectory.Management.Commands.ADCmdletBase`1.BeginProcessing()
-failed: [192.168.56.xx] (item={'key': 'DragonsFriends', 'value': ['sevenkingdoms.local\\tyron.lannister', 'essos.local\\daenerys.targaryen']}) => {"ansible_loop_var": "item", "attempts": 3, "changed": false, "item": {"key": "DragonsFriends", "value": ["north.sevenkingdoms.local\\jon.snow", "sevenkingdoms.local\\tyron.lannister", "essos.local\\daenerys.targaryen"]}, "msg": "Unhandled exception while executing module: Either the target name is incorrect or the server has rejected the client credentials."}
+failed: [192.168.56.xx] (item={'key': 'DragonsFriends', 'value': ['hacksburg.local\\tyron.lannister', 'roanoke.local\\daenerys.targaryen']}) => {"ansible_loop_var": "item", "attempts": 3, "changed": false, "item": {"key": "DragonsFriends", "value": ["lane.hacksburg.local\\jon.snow", "hacksburg.local\\tyron.lannister", "roanoke.local\\daenerys.targaryen"]}, "msg": "Unhandled exception while executing module: Either the target name is incorrect or the server has rejected the client credentials."}
 ```
 
 ### Error Add-Warning
@@ -665,7 +720,7 @@ ansible-galaxy collection install ansible.windows --force
 ### winrm
 
 ```bash
-PLAY [DC01 - kingslanding] *******************************************************
+PLAY [DC01 - TOTS] *******************************************************
 
  
 
@@ -697,9 +752,9 @@ solution : wait or if crashed then re-run Ansible script
 ### Domain controller : ensure Users are present 
 
 ```bash
-TASK [domain_controller : Ensure that Users presents in ou=<kingdom>,dc=SEVENKINGDOMS,dc=local] ***************************************************************************
+TASK [domain_controller : Ensure that Users presents in ou=<kingdom>,DC=hacksburg,DC=local] ***************************************************************************
 An exception occurred during task execution. To see the full traceback, use -vvv. The error was:    at Microsoft.ActiveDirectory.Management.Commands.ADCmdletBase`1.ProcessRecord()
-failed: [192.168.56.10] (item={u'key': u'lord.varys', u'value': {u'city': u"King's Landing", u'password': u'_W1sper_$', u'name': u'Lord Varys', u'groups': u'Small Council', u'path': u'OU=Users,OU=Crownlands,OU=kingdoms,DC=SEVENKINGDOMS,DC=local'}}) => {"ansible_loop_var": "item", "changed": false, "item": {"key": "lord.varys", "value": {"city": "King's Landing", "groups": "Small Council", "name": "Lord Varys", "password": "_W1sper_$", "path": "OU=Users,OU=Crownlands,OU=kingdoms,DC=SEVENKINGDOMS,DC=local"}}, "msg": "Unhandled exception while executing module: An unspecified error has occurred"}
+failed: [192.168.56.10] (item={u'key': u'lord.varys', u'value': {u'city': u"King's Landing", u'password': u'_W1sper_$', u'name': u'Lord Varys', u'groups': u'CyberVT', u'path': u'OU=Users,OU=Crownlands,OU=kingdoms,DC=hacksburg,DC=local'}}) => {"ansible_loop_var": "item", "changed": false, "item": {"key": "lord.varys", "value": {"city": "King's Landing", "groups": "CyberVT", "name": "Lord Varys", "password": "_W1sper_$", "path": "OU=Users,OU=Crownlands,OU=kingdoms,DC=hacksburg,DC=local"}}, "msg": "Unhandled exception while executing module: An unspecified error has occurred"}
 
 ```
  solution : re-run Ansible script

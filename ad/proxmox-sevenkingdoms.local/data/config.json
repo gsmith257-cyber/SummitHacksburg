@@ -2,15 +2,15 @@
 "lab" : {
     "hosts" : {
         "dc01" : {
-            "hostname" : "kingslanding",
+            "hostname" : "TownHall",
             "type" : "dc",
             "local_admin_password": "8dCT-DJjgScp",
-            "domain" : "sevenkingdoms.local",
+            "domain" : "hacksburg.local",
             "path" : "DC=sevenkingdoms,DC=local",
             "local_groups" : {
                 "Administrators" : [
-                    "sevenkingdoms\\robert.baratheon",
-                    "sevenkingdoms\\cersei.lannister",
+                    "hacksburg\\richard.stallman", 
+                    "hacksburg\\bud.foster",
                     "sevenkingdoms\\DragonRider"
                 ],
                 "Remote Desktop Users" : [
@@ -25,11 +25,11 @@
             "hostname" : "casterlyrock",
             "type" : "server",
             "local_admin_password": "EP+xh7Rk6j90",
-            "domain" : "sevenkingdoms.local",
+            "domain" : "hacksburg.local",
             "path" : "DC=sevenkingdoms,DC=local",
             "local_groups" : {
                 "Administrators" : [
-                    "sevenkingdoms\\tywin.lannister",
+                    "hacksburg\\hokie.bird",
                     "sevenkingdoms\\jamie.lannister"
                 ]
             },
@@ -40,16 +40,16 @@
             "vulns" : []
         },
         "dc02" : {
-            "hostname" : "winterfell",
+            "hostname" : "sharkys",
             "type" : "dc",
             "local_admin_password": "NgtI75cKV+Pu",
-            "domain" : "north.sevenkingdoms.local",
-            "path" : "DC=north,DC=sevenkingdoms,DC=local",
+            "domain" : "lane.hacksburg.local",
+            "path" : "DC=lane,DC=sevenkingdoms,DC=local",
             "local_groups" : {
                 "Administrators" : [
-                    "north\\eddard.stark",
-                    "north\\catelyn.stark",
-                    "north\\robb.stark"
+                    "LANE\\grant.smith",
+                    "LANE\\chris.ryan",
+                    "LANE\\erin.freck"
                 ],
                 "Remote Desktop Users" : [
                     "north\\Stark"
@@ -70,16 +70,16 @@
                     "setup": "c:\\setup"
                 },
                 "credentials" : {
-                    "TERMSRV/castelblack": {
-                        "username" : "north\\robb.stark",
+                    "TERMSRV/centros": {
+                        "username" : "LANE\\erin.freck",
                         "secret"   : "sexywolfy",
-                        "runas"    : "north\\robb.stark",
+                        "runas"    : "LANE\\erin.freck",
                         "runas_password" : "sexywolfy"
                     }
                 },
                 "autologon" : {
                     "robb.stark" : {
-                        "username" : "north\\robb.stark",
+                        "username" : "LANE\\erin.freck",
                         "password" : "sexywolfy"
                     }
                 },
@@ -92,15 +92,15 @@
             }
         },
         "srv02" : {
-            "hostname" : "castelblack",
+            "hostname" : "centros",
             "type" : "server",
             "local_admin_password": "NgtI75cKV+Pu",
-            "domain" : "north.sevenkingdoms.local",
-            "path" : "DC=north,DC=sevenkingdoms,DC=local",
+            "domain" : "lane.hacksburg.local",
+            "path" : "DC=lane,DC=sevenkingdoms,DC=local",
             "use_laps": false,
             "local_groups" : {
                 "Administrators" : [
-                    "north\\jeor.mormont"
+                    "LANE\\wesley.flynn"
                 ],
                 "Remote Desktop Users" : [
                     "north\\Night Watch",
@@ -114,39 +114,39 @@
                 "sa_password": "Sup1_sa_P@ssw0rd!",
                 "svcaccount" : "sql_svc",
                 "sysadmins" : [
-                    "NORTH\\jon.snow"
+                    "LANE\\thomas.rydzewski"
                 ],
                 "executeaslogin" : {
-                    "NORTH\\samwell.tarly" : "sa",
-                    "NORTH\\brandon.stark" :  "NORTH\\jon.snow"
+                    "LANE\\carly.wolfe" : "sa",
+                    "LANE\\chris.cerne" :  "LANE\\thomas.rydzewski"
                 },
                 "executeasuser" : {
                     "arya_master_dbo": {
-                        "user": "NORTH\\arya.stark",
+                        "user": "LANE\\miles.zoel",
                         "db"  : "master",
                         "impersonate" : "dbo"
                     },
                     "arya_dbms_dbo": {
-                        "user": "NORTH\\arya.stark",
+                        "user": "LANE\\miles.zoel",
                         "db"  : "msdb",
                         "impersonate" : "dbo"
                     }
                 },
                 "linked_servers": {
-                    "BRAAVOS" : {
-                        "data_src": "braavos.essos.local",
+                    "duckpond" : {
+                        "data_src": "duckpond.roanoke.local",
                         "users_mapping": [
-                            {"local_login": "NORTH\\jon.snow","remote_login": "sa", "remote_password": "sa_P@ssw0rd!Ess0s"}
+                            {"local_login": "LANE\\thomas.rydzewski","remote_login": "sa", "remote_password": "sa_P@ssw0rd!Ess0s"}
                         ]
                     }
                 }
             }
         },
         "dc03" : {
-            "hostname" : "meereen",
+            "hostname" : "drillfield",
             "type" : "dc",
             "local_admin_password": "Ufe-bVXSx9rk",
-            "domain" : "essos.local",
+            "domain" : "roanoke.local",
             "path" : "DC=essos,DC=local",
             "local_groups" : {
                 "Administrators" : [
@@ -160,10 +160,10 @@
             "vulns" : ["ntlmdowngrade", "disable_firewall"]
         },
         "srv03" : {
-            "hostname" : "braavos",
+            "hostname" : "duckpond",
             "type" : "server",
             "local_admin_password": "978i2pF43UJ-",
-            "domain" : "essos.local",
+            "domain" : "roanoke.local",
             "path" : "DC=essos,DC=local",
             "use_laps": true,
             "local_groups" : {
@@ -187,8 +187,8 @@
                 },
                 "executeasuser" : {},
                 "linked_servers": {
-                    "CASTELBLACK" : {
-                        "data_src": "castelblack.north.sevenkingdoms.local",
+                    "centros" : {
+                        "data_src": "centros.lane.hacksburg.local",
                         "users_mapping": [
                             {"local_login": "ESSOS\\khal.drogo","remote_login": "sa", "remote_password": "Sup1_sa_P@ssw0rd!"}
                         ]
@@ -198,12 +198,12 @@
         }
     },
     "domains" : {
-        "essos.local" : {
+        "roanoke.local" : {
             "dc": "dc03",
             "domain_password" : "Ufe-bVXSx9rk",
             "netbios_name": "ESSOS",
-            "ca_server": "Braavos",
-            "trust" : "sevenkingdoms.local",
+            "ca_server": "duckpond",
+            "trust" : "hacksburg.local",
             "laps_path": "OU=Laps,DC=essos,DC=local",
             "organisation_units" : {
             },
@@ -235,11 +235,11 @@
             },
             "multi_domain_groups_member" : {
                 "DragonsFriends" : [
-                    "sevenkingdoms.local\\tyron.lannister",
-                    "essos.local\\daenerys.targaryen"
+                    "hacksburg.local\\tyron.lannister",
+                    "roanoke.local\\daenerys.targaryen"
                 ],
                 "Spys" : [
-                    "sevenkingdoms.local\\Small Council"
+                    "hacksburg.local\\Small Council"
                 ]
             },
             "acls" : {
@@ -247,7 +247,7 @@
                 "GenericAll_spy_jorah" : {"for": "Spys", "to": "jorah.mormont", "right": "GenericAll", "inheritance": "None"},
                 "GenericAll_khal_esc4" : {"for": "khal.drogo", "to": "CN=ESC4,CN=Certificate Templates,CN=Public Key Services,CN=Services,CN=Configuration,DC=essos,DC=local", "right": "GenericAll", "inheritance": "None"},
                 "WriteProperty_petyer_domadmin" : {"for": "viserys.targaryen", "to": "jorah.mormont", "right": "WriteProperty", "inheritance": "All"},
-                "GenericWrite_DragonsFriends_braavos" : {"for": "DragonsFriends", "to": "braavoos$", "right": "GenericWrite", "inheritance": "None"}
+                "GenericWrite_DragonsFriends_duckpond" : {"for": "DragonsFriends", "to": "braavoos$", "right": "GenericWrite", "inheritance": "None"}
             },
             "users" : {
                 "daenerys.targaryen" : {
@@ -294,16 +294,16 @@
                     "description" : "sql service",
                     "groups"      : [],
                     "path"        : "CN=Users,DC=essos,DC=local",
-                    "spns"        : ["MSSQLSvc/braavos.essos.local:1433","MSSQLSvc/braavos.essos.local"]
+                    "spns"        : ["MSSQLSvc/duckpond.roanoke.local:1433","MSSQLSvc/duckpond.roanoke.local"]
                 }
             }
         },
-        "north.sevenkingdoms.local" : {
+        "lane.hacksburg.local" : {
             "dc": "dc02",
             "domain_password" : "NgtI75cKV+Pu",
             "netbios_name": "NORTH",
             "trust" : "",
-            "laps_path": "OU=Laps,DC=north,DC=sevenkingdoms,DC=local",
+            "laps_path": "OU=Laps,DC=lane,DC=sevenkingdoms,DC=local",
             "organisation_units" : {
             },
             "groups" : {
@@ -311,41 +311,41 @@
                 "global" : {
                     "Stark" : {
                         "managed_by" : "eddard.stark",
-                        "path" : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                        "path" : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                     },
-                    "Night Watch" : {
+                    "Corps Of Cadets" : {
                         "managed_by" : "jeor.mormont",
-                        "path" : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                        "path" : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                     },
                     "Mormont" : {
                         "managed_by" : "jeor.mormont",
-                        "path" : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                        "path" : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                     }
                 },
                 "domainlocal" : {
-                    "AcrossTheSea" : {
-                        "path" : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "Roanoke" : {
+                        "path" : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                     }
                 }
             },
             "multi_domain_groups_member" : {
-                "AcrossTheSea" : [
-                    "essos.local\\daenerys.targaryen"
+                "Roanoke" : [
+                    "roanoke.local\\daenerys.targaryen"
                 ]
             },
             "acls" : {
-                "anonymous_rpc" : {"for": "NT AUTHORITY\\ANONYMOUS LOGON", "to": "DC=North,DC=sevenkingdoms,DC=local", "right": "ReadProperty", "inheritance": "All"},
-                "anonymous_rpc2" : {"for": "NT AUTHORITY\\ANONYMOUS LOGON", "to": "DC=North,DC=sevenkingdoms,DC=local", "right": "GenericExecute", "inheritance": "All"}
+                "anonymous_rpc" : {"for": "NT AUTHORITY\\ANONYMOUS LOGON", "to": "DC=lane,DC=sevenkingdoms,DC=local", "right": "ReadProperty", "inheritance": "All"},
+                "anonymous_rpc2" : {"for": "NT AUTHORITY\\ANONYMOUS LOGON", "to": "DC=lane,DC=sevenkingdoms,DC=local", "right": "GenericExecute", "inheritance": "All"}
             },
             "users" : {
                 "arya.stark" : {
                     "firstname"   : "Arya",
                     "surname"     : "Stark",
                     "password"    : "Needle",
-                    "city"        : "Winterfell",
+                    "city"        : "sharkys",
                     "description" : "Arya Stark",
-                    "groups"      : ["Stark"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["CyberVT"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "eddard.stark" : {
                     "firstname"   : "Eddard",
@@ -353,8 +353,8 @@
                     "password"    : "FightP3aceAndHonor!",
                     "city"        : "King's Landing",
                     "description" : "Eddard Stark",
-                    "groups"      : ["Stark", "Domain Admins"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["CyberVT", "Domain Admins"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "catelyn.stark" : {
                     "firstname"   : "Catelyn",
@@ -362,53 +362,53 @@
                     "password"    : "robbsansabradonaryarickon",
                     "city"        : "King's Landing",
                     "description" : "Catelyn Stark",
-                    "groups"      : ["Stark"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["CyberVT"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "robb.stark" : {
                     "firstname"   : "Robb",
                     "surname"     : "Stark",
                     "password"    : "sexywolfy",
-                    "city"        : "Winterfell",
+                    "city"        : "sharkys",
                     "description" : "Robb Stark",
-                    "groups"      : ["Stark"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["CyberVT"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "sansa.stark" : {
                     "firstname"   : "Sansa",
                     "surname"     : "Stark",
                     "password"    : "=_)(*&^%$#@!qazaq",
-                    "city"        : "Winterfell",
+                    "city"        : "sharkys",
                     "description" : "Sansa Stark",
-                    "groups"      : ["Stark"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["CyberVT"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "brandon.stark" : {
                     "firstname"   : "Brandon",
                     "surname"     : "Stark",
                     "password"    : "iseedeadpeople",
-                    "city"        : "Winterfell",
+                    "city"        : "sharkys",
                     "description" : "Brandon Stark",
-                    "groups"      : ["Stark"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["CyberVT"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "rickon.stark" : {
                     "firstname"   : "Rickon",
                     "surname"     : "Stark",
                     "password"    : "Winter2022",
-                    "city"        : "Winterfell",
+                    "city"        : "sharkys",
                     "description" : "Rickon Stark",
-                    "groups"      : ["Stark"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["CyberVT"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "hodor" : {
                     "firstname"   : "hodor",
                     "surname"     : "hodor",
                     "password"    : "hodor",
-                    "city"        : "Winterfell",
+                    "city"        : "sharkys",
                     "description" : "Brainless Giant",
-                    "groups"      : ["Stark"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["CyberVT"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "jon.snow" : {
                     "firstname"   : "Jon",
@@ -416,9 +416,9 @@
                     "password"    : "iknownothing",
                     "city"        : "Castel Black",
                     "description" : "Jon Snow",
-                    "groups"      : ["Stark", "Night Watch"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local",
-                    "spns"        : ["HTTP/thewall.north.sevenkingdoms.local"]
+                    "groups"      : ["CyberVT", "Corps Of Cadets"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local",
+                    "spns"        : ["HTTP/thewall.lane.hacksburg.local"]
                 },
                 "samwell.tarly" : {
                     "firstname"   : "Samwell",
@@ -426,8 +426,8 @@
                     "password"    : "Heartsbane",
                     "city"        : "Castel Black",
                     "description" : "Samwell Tarly (Password : Heartsbane)",
-                    "groups"      : ["Night Watch"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["Corps Of Cadets"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "jeor.mormont" : {
                     "firstname"   : "Jeor",
@@ -435,8 +435,8 @@
                     "password"    : "_L0ngCl@w_",
                     "city"        : "Castel Black",
                     "description" : "Jeor Mormont",
-                    "groups"      : ["Night Watch", "Mormont"],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local"
+                    "groups"      : ["Corps Of Cadets", "Mormont"],
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local"
                 },
                 "sql_svc" : {
                     "firstname"   : "sql",
@@ -445,16 +445,16 @@
                     "city"        : "-",
                     "description" : "sql service",
                     "groups"      : [],
-                    "path"        : "CN=Users,DC=North,DC=sevenkingdoms,DC=local",
-                    "spns"        : ["MSSQLSvc/castelblack.north.sevenkingdoms.local:1433","MSSQLSvc/castelblack.north.sevenkingdoms.local"]
+                    "path"        : "CN=Users,DC=lane,DC=sevenkingdoms,DC=local",
+                    "spns"        : ["MSSQLSvc/centros.lane.hacksburg.local:1433","MSSQLSvc/centros.lane.hacksburg.local"]
                 }
             }
         },
-        "sevenkingdoms.local" : {
+        "hacksburg.local" : {
             "dc": "dc01",
             "domain_password" : "8dCT-DJjgScp",
             "netbios_name": "SEVENKINGDOMS",
-            "trust" : "essos.local",
+            "trust" : "roanoke.local",
             "laps_path": "OU=Laps,DC=sevenkingdoms,DC=local",
             "organisation_units" : {
                 "Vale"        : { "path" : "DC=sevenkingdoms,DC=local"},
@@ -469,7 +469,7 @@
             "groups" : {
                 "universal" : {},
                 "global" : {
-                    "Lannister" : {
+                    "Hokies" : {
                         "managed_by" : "tywin.lannister",
                         "path" : "OU=Westerlands,DC=sevenkingdoms,DC=local"
                     },
@@ -498,7 +498,7 @@
             },
             "multi_domain_groups_member" : {
                 "AcrossTheNarrowSea" : [
-                    "essos.local\\daenerys.targaryen"
+                    "roanoke.local\\daenerys.targaryen"
                 ]
             },
             "acls" : {
@@ -509,8 +509,8 @@
                 "addmember_smallcouncil_DragonStone" : {"for": "Small Council", "to": "DragonStone", "right": "Ext-Write-Self-Membership", "inheritance": "All"},
                 "write_owner_dragonstone_kingsguard" : {"for": "DragonStone", "to": "KingsGuard", "right": "WriteOwner", "inheritance": "None"},
                 "GenericAll_kingsguard_stanis" : {"for": "KingsGuard", "to": "stannis.baratheon", "right": "GenericAll", "inheritance": "None"},
-                "GenericAll_stanis_dc" : {"for": "stannis.baratheon", "to": "kingslanding$", "right": "GenericAll", "inheritance": "None"},
-                "GenericAll_group_acrrosdom_dc" : {"for": "AcrossTheNarrowSea", "to": "kingslanding$", "right": "GenericAll", "inheritance": "None"},
+                "GenericAll_stanis_dc" : {"for": "stannis.baratheon", "to": "TOTS$", "right": "GenericAll", "inheritance": "None"},
+                "GenericAll_group_acrrosdom_dc" : {"for": "AcrossTheNarrowSea", "to": "TOTS$", "right": "GenericAll", "inheritance": "None"},
                 "GenericAll_varys_domadmin" : {"for": "lord.varys", "to": "Domain Admins", "right": "GenericAll", "inheritance": "None"},
                 "GenericAll_varys_domadmin_holder" : {"for": "lord.varys", "to": "CN=AdminSDHolder,CN=System,DC=sevenkingdoms,DC=local", "right": "GenericAll", "inheritance": "None"}
             },
@@ -521,7 +521,7 @@
                     "password"    : "powerkingftw135",
                     "city"        : "Casterly Rock",
                     "description" : "Tywin Lanister",
-                    "groups"      : ["Lannister"],
+                    "groups"      : ["Hokies"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 },
                 "jaime.lannister" : {
@@ -530,7 +530,7 @@
                     "password"    : "cersei",
                     "city"        : "King's Landing",
                     "description" : "Jaime Lanister",
-                    "groups"      : ["Lannister"],
+                    "groups"      : ["Hokies"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 },
                 "cersei.lannister" : {
@@ -539,7 +539,7 @@
                     "password"    : "il0vejaime",
                     "city"        : "King's Landing",
                     "description" : "Cersei Lanister",
-                    "groups"      : ["Lannister","Baratheon","Domain Admins","Small Council"],
+                    "groups"      : ["Hokies","Baratheon","Domain Admins","Small Council"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 },
                 "tyron.lannister" : {
@@ -548,7 +548,7 @@
                     "password"    : "Alc00L&S3x",
                     "city"        : "King's Landing",
                     "description" : "Tyron Lanister",
-                    "groups"      : ["Lannister"],
+                    "groups"      : ["Hokies"],
                     "path"        : "OU=Westerlands,DC=sevenkingdoms,DC=local"
                 },
                 "robert.baratheon" : {
@@ -557,7 +557,7 @@
                     "password"    : "iamthekingoftheworld",
                     "city"        : "King's Landing",
                     "description" : "Robert Lanister",
-                    "groups"      : ["Baratheon","Domain Admins","Small Council"],
+                    "groups"      : ["UNIX","Domain Admins","Small Council"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 },
                 "joffrey.baratheon" : {
@@ -566,7 +566,7 @@
                     "password"    : "1killerlion",
                     "city"        : "King's Landing",
                     "description" : "Joffrey Baratheon",
-                    "groups"      : ["Baratheon","Lannister"],
+                    "groups"      : ["UNIX","Hokies"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 },
                 "renly.baratheon" : {
@@ -575,7 +575,7 @@
                     "password"    : "lorastyrell",
                     "city"        : "King's Landing",
                     "description" : "Renly Baratheon",
-                    "groups"      : ["Baratheon","Small Council"],
+                    "groups"      : ["UNIX","Small Council"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 },
                 "stannis.baratheon" : {
@@ -584,7 +584,7 @@
                     "password"    : "Drag0nst0ne",
                     "city"        : "King's Landing",
                     "description" : "Stannis Baratheon",
-                    "groups"      : ["Baratheon","Small Council"],
+                    "groups"      : ["UNIX","Small Council"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 },
                 "petyer.baelish" : {
@@ -593,7 +593,7 @@
                     "password"    : "@littlefinger@",
                     "city"        : "King's Landing",
                     "description" : "Petyer Baelish",
-                    "groups"      : ["Small Council"],
+                    "groups"      : ["ADMINS"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 },
                 "lord.varys" : {
@@ -602,7 +602,7 @@
                     "password"    : "_W1sper_$",
                     "city"        : "King's Landing",
                     "description" : "Lord Varys",
-                    "groups"      : ["Small Council"],
+                    "groups"      : ["ADMINS"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 },
                 "maester.pycelle" : {
@@ -611,7 +611,7 @@
                     "password"    : "MaesterOfMaesters",
                     "city"        : "King's Landing",
                     "description" : "Maester Pycelle",
-                    "groups"      : ["Small Council"],
+                    "groups"      : ["ADMINS"],
                     "path"        : "OU=Crownlands,DC=sevenkingdoms,DC=local"
                 }
             }

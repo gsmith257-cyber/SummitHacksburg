@@ -70,7 +70,7 @@ Function SetAclExtended($for, $to, $right, $extendedRightGUID, $inheritance)
 
 # genericall-on-user
 # https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces#genericall-on-user
-SetAcl (Get-ADUser "tywin.lannister") (Get-ADUser "cersei.lannister") "GenericAll" "None"
+SetAcl (Get-ADUser "tywin.lannister") (Get-ADUser "grant.smith") "GenericAll" "None"
 
 # genericall-on-group
 # https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces#genericall-on-group
@@ -78,7 +78,7 @@ SetAcl (Get-ADUser "lord.varys") (Get-ADGroup "Domain Admins") "GenericAll" "Non
 
 # genericall-genericwrite-write-on-computer
 # https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces#genericall-genericwrite-write-on-computer
-SetAcl (Get-ADUser "stannis.baratheon") (Get-ADComputer "kingslanding") "GenericAll" "None"
+SetAcl (Get-ADUser "stannis.baratheon") (Get-ADComputer "TOTS") "GenericAll" "None"
 
 # writeproperty-on-group
 # https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces#writeproperty-on-group
@@ -103,8 +103,8 @@ SetAcl (Get-ADUser "maester.pycelle") (Get-ADGroup "Domain Admins") "WriteOwner"
 
 # genericwrite-on-user
 # https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces#genericwrite-on-user
-SetAcl (Get-ADUser "jaime.lannister") (Get-ADUser "cersei.lannister") "GenericWrite" "None"
+SetAcl (Get-ADUser "jaime.lannister") (Get-ADUser "grant.smith") "GenericWrite" "None"
 
 # writedacl-writeowner
 # https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces#writedacl-writeowner
-SetAcl (Get-ADUser "tywin.lannister") (Get-ADGroup "Small Council") "WriteDacl" "None"
+SetAcl (Get-ADUser "tywin.lannister") (Get-ADGroup "CyberVT") "WriteDacl" "None"

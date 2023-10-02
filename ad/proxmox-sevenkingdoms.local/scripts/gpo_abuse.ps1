@@ -5,10 +5,10 @@ if ($gpo_exist) {
     # Do nothing
     #Remove-GPO -Name "StarkWallpaper"
     #Remove the link of the GPO Remove-StarkWallpaper if it exists
-    #Remove-GPLink -Name "StarkWallpaper" -Target "DC=north,DC=sevenkingdoms,DC=local" -erroraction 'silentlycontinue'
+    #Remove-GPLink -Name "StarkWallpaper" -Target "DC=lane,DC=hacksburg,DC=local" -erroraction 'silentlycontinue'
 } else {
     New-GPO -Name "StarkWallpaper" -comment "Change Wallpaper"
-    New-GPLink -Name "StarkWallpaper" -Target "DC=north,DC=sevenkingdoms,DC=local"
+    New-GPLink -Name "StarkWallpaper" -Target "DC=lane,DC=hacksburg,DC=local"
 
     #https://www.thewindowsclub.com/set-desktop-wallpaper-using-group-policy-and-registry-editor
     Set-GPRegistryValue -Name "StarkWallpaper" -key "HKEY_CURRENT_USER\Control Panel\Colors" -ValueName Background -Type String -Value "100 175 200"
